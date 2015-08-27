@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta name="description" content="qrcopy" />
+  <meta name="keywords" content="qrcopy" />
+  <meta name="language" content="English" />
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>qrcopy</title>
+  <style type="text/css">
+    body{ width:100%; }
+    img{ border:0; }
+    #main{ margin: 15px auto; background:white; overflow: auto; width: 100%; }
+    #mainbody{ width:100%; display:none; }
+    #v{width:320px;height:240px;}
+    #qr-canvas{display:none;}
+    #outdiv{ width:320px; height:240px; border: 1px solid black; }
+    #result{ border: 1px solid black; padding: 1em; }
+    #qrcode{width:400px; height:400px; border: 1px solid grey; padding: 1em;}
+  </style>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="llqrcode.js"></script>
+  <script type="text/javascript" src="webqr.js"></script>
+  <script type="text/javascript" src="qrcodelib.js"></script>
+  <script>
+    function createQrCode(text, elem){
+      $(elem).empty();
+      $(elem).qrcode({
+          render: 'canvas',
+          text: text
+      });
+      html2canvas( $(elem) );
+    }
+  </script>
+</head>
+<body>
+  <div id="main">
+    <div id="mainbody">
+      <div id="outdiv"></div>
+      <div id="result"></div>
+    </div>
+  </div>
+  <div id="qrcode"></div>
+  <button onclick="createQrCode(prompt('Enter your text sucka!'), $('#qrcode'))">build QR</button>
+  <canvas id="qr-canvas" width="800" height="600"></canvas>
+  <script type="text/javascript">load();</script>
+</body>
+</html>
